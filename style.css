@@ -1,0 +1,178 @@
+
+:root{
+    --color_fondo: #1f1347;
+    --color_boton:#38b6ff;
+    --color_letras_principales:white;
+}
+
+
+
+.banner-container {
+    position: relative; /* Correcto: este es el punto de referencia */
+    width: 100%;
+    height: 150px;
+    overflow: visible;
+    margin-bottom: 60px;
+    
+    /* ❌ ELIMINADO: display: flex, flex-direction, align-items */
+    /* Al quitarlos, permitimos que los elementos se superpongan */
+}
+
+.banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Opcional: display: block; para evitar espacios fantasma abajo */
+}
+
+.logo {
+    position: absolute; /* ✅ AGREGADO: Esto saca al logo del flujo para que flote */
+    
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    
+    /* ✅ CORREGIDO: Faltaba el estilo del borde (solid), sin eso no se ve */
+    border: 4px solid white; 
+    
+    /* ✅ CENTRADO: */
+    left: 50%; /* Mueve el borde izquierdo del logo al centro */
+    transform: translateX(-50%); /* Mueve el logo hacia atrás su propia mitad para centrarlo exacto */
+    
+    /* ✅ ALTURA: */
+    bottom: -50px; /* Lo baja para que quede mitad adentro, mitad afuera */
+}
+.cuerpo{
+    display: flex; /* 1. Activar el modo flexible */
+    flex-direction: column; /* 2. Decirle que se apilen verticalmente (columna) */
+    align-items: center;  /* 3. Centrar los elementos horizontalmente */
+    text-align: center;  /* 4. Centrar el texto interno (por si tienes párrafos largos) */
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+body{
+    background-color: var(--color_fondo);
+    min-height: 100vh;
+    margin: 0;
+   /* ESTO CREA LA TEXTURA DE CUADRÍCULA: */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    
+    /* El tamaño de cada cuadrado de la red (40px x 40px) */
+    background-size: 40px 40px;
+}
+
+.text h1{
+    margin: 5px 0px 0px 0px;
+    font-size: 63px;
+    color: var(--color_letras_principales);
+}
+.text h2{
+    margin: 0px 0px 0px 5px;
+    font-size: 16x;
+    font-weight: 100;
+    /* 1. Limita el ancho */
+    max-width: 280px; /* Juega con este número hasta que se parta donde te guste */
+    
+    /* 2. Importante: Centrar el bloque */
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--color_letras_principales);
+}
+
+.redes_sociales {
+    /* 1. La Magia: Pone los iconos uno al lado del otro */
+    display: flex;
+    
+    /* 2. Alineación: Los centra en medio de la pantalla */
+    justify-content: center;
+    
+    /* 3. Separación: El espacio EXACTO entre cada icono (como en tu foto) */
+    gap: 30px; 
+    
+    /* 4. Un poco de aire arriba para separarlo del texto "Sígueme..." */
+    margin-top: 30px;
+    margin-bottom: 30px; /* Espacio abajo por si pones algo más después */
+}
+
+/* Estilo para los ENLACES (que contienen los iconos) */
+.redes_sociales a {
+    text-decoration: none; /* Quita el subrayado típico de los links */
+    color: #38b6ff;          /* Color del icono (cámbialo si tu fondo es blanco) */
+    font-size: 22px;       /* El tamaño del icono */
+    
+    /* Esto es para que la animación de "hover" sea suavecita */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* EFECTO GAMER: Cuando pasas el mouse por encima */
+.redes_sociales a:hover {
+    color: #ffffff;        /* Cambia a verde neón (o el color que gustes) */
+    transform: translateY(-5px); /* El icono "flota" un poquito hacia arriba */
+}
+
+/* 1. El Contenedor (La columna vertebral) */
+.link_principales {
+    display: flex;
+    flex-direction: column; /* Apila los botones uno sobre otro */
+    gap: 15px;              /* Espacio entre cada botón */
+    width: 90%;             /* Que ocupe casi todo el ancho en celular */
+    max-width: 400px;       /* Pero que no sea gigante en PC */
+    margin: 0 auto;         /* Centra el bloque en la pantalla */
+}
+
+/* 2. Limpieza de las etiquetas H3 */
+.link_principales h3 {
+    margin: 0; /* Quitamos los márgenes por defecto de los títulos */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+/* 3. El Botón Real (El enlace <a>) */
+.link_principales h3 a {
+    /* LA CLAVE: */
+    display: block; /* Convierte el texto en una caja rellenable */
+    
+    /* Estética Visual */
+    background-color: var(--color_boton); /* Color Naranja (puedes cambiarlo a #333 para modo oscuro) */
+    color: black;
+    text-decoration: none;     /* Quita la línea de subrayado */
+    text-align: center;        /* Texto al centro */
+    
+    /* Forma de Píldora */
+    padding: 15px 0;           /* Relleno: 15px arriba/abajo */
+    border-radius: 0px;      
+    border: 4px solid black;
+
+    /* Tipografía */
+    font-weight: bold;
+    text-transform: uppercase; /* Convierte todo a MAYÚSCULAS automáticamente */
+    letter-spacing: 4px;       /* Separa un poco las letras para elegancia */
+    font-weight: 50;
+
+    /* Animación */
+    transition: all 0.2s ease, background-color 0.2s ease;
+    /* En el selector de tus botones */
+    box-shadow: inset 4px 4px 0px rgba(255, 255, 255, 0.5), /* Luz interna (Borde blanco) */
+        inset -4px -4px 0px rgba(0, 0, 0, 0.2),/* Sombra interna (Oscuridad) */  4px 4px 0px black;
+    /* - 4px: Desplazamiento horizontal a la derecha
+        - 4px: Desplazamiento vertical hacia abajo
+        - 0px: Desenfoque (blur) - esto hace que la sombra sea sólida
+        - 0px: Extensión (spread)
+        - #000000: Color de la sombra (negro)
+    */
+}
+
+/* 4. Efecto al pasar el mouse (Hover) */
+.link_principales a:hover {
+    background-color: #ffffff; /* Un naranja un poco más oscuro */
+    transform: scale(1.05);    /* Crece un 5% */
+}
+.link_principales a:active{
+    box-shadow: 0px 0px 0px 0px #000000; /* La sombra desaparece al presionar */
+    transform: translate(4px, 4px); /* El botón se mueve 4px hacia abajo y a la derecha, ocupando el lugar de la sombra */
+    transition: all 0.1s ease; /* Una transición rápida para que se sienta ágil */
+}
